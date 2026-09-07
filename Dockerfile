@@ -13,7 +13,7 @@ FROM nginx:stable-alpine
 COPY --from=build /app/build /usr/share/nginx/html
 
 # Configure Nginx for SPA fallback (redirect all routes to index.html)
-RUN printf 'server {\n listen 80;\n server_name _;\n root /usr/share/nginx/html;\n location / {\n  try_files $uri $uri/ /index.html;\n }\n}\n' > /etc/nginx/conf.d/default.conf
+RUN printf 'server {\n listen 3000;\n server_name _;\n root /usr/share/nginx/html;\n location / {\n  try_files $uri $uri/ /index.html;\n }\n}\n' > /etc/nginx/conf.d/default.conf
 
-EXPOSE 80
+EXPOSE 3000
 CMD ["nginx", "-g", "daemon off;"]
